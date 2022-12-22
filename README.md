@@ -2,8 +2,10 @@
 Telegram bot to determine air quality near you
 
 # Functionality:
-- Find out the air quality near you
-- Set up daily air quality notifications
+
+| Find out the air quality near you        | Set up daily air quality notifications       |
+|------------------------------------------|----------------------------------------------|
+| ![air quality gif](docs/air_quality.GIF) | ![notifications gif](docs/notifications.GIF) |
 
 # Run Locally
 To run application locally you need:
