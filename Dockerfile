@@ -14,6 +14,7 @@ WORKDIR /dist
 
 COPY --from=build /app/main ./
 COPY --from=build /usr/local/go/lib/time/zoneinfo.zip /
+COPY --from=build /app/assets ./assets/
 #COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 ENV ZONEINFO=/zoneinfo.zip
