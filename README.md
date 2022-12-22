@@ -1,13 +1,13 @@
 # Air Quality Bot
 Telegram bot to determine air quality near you
 
-Usecases:
+# Functionality:
 - Find out the air quality near you
 - Set up daily air quality notifications
 
-# Run locally
+# Run Locally
 To run application locally you need:
-- Create your own telegram bot, using [BotFather](https://t.me/botfather)
+- Create your own telegram bot, using [@BotFather](https://t.me/botfather)
 - Get an access token for api.waqi.info, using [Air Quality Open Data Platform](https://aqicn.org/data-platform/token/)
 - Install [ngrok](https://ngrok.com/download) or any other tool, that allow you expose a local server to the Internet
 
@@ -18,7 +18,6 @@ Then follow these steps:
     ````
     ngrok http 8080
     ````
-    
     You will see something similar to this message:
     ````
     Session Status                online
@@ -33,6 +32,18 @@ Then follow these steps:
     ````
 4. Copy a forwarding URL from the ngrok result screen. Choose the one, that starts with `https://`. Paste it into `.env` file as a `TELEGRAM_BOT_WEBHOOK_URL`
 5. Fill in the remaining fields in the `.env` file
+6. Run `docker-compose.yml` throw the IDE or run command bellow: 
+    ````
+    docker compose up --build
+    ````
+
+# Bot Flow
+![bot flow img](docs/bot-flow.png)
+> Messages are stored in the `internal/locale` package
+
+# Air Quality Information
+This bot uses the public api of the [waqi](https://waqi.info/) service to obtain up-to-date information about air quality by user geolocation
+
 
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change
