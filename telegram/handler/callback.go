@@ -55,6 +55,11 @@ func (u *UpdateHandler) InitializeCallbacks() {
 
 func (u *UpdateHandler) handleCallback(upd *tgbotapi.Update) {
 	u.log.Info("Handling callback", zap.Int64("chatID", upd.CallbackQuery.Message.Chat.ID), zap.String("callbackID", upd.CallbackQuery.Data))
+
+	//remove loading alert
+	callback := tgbotapi.NewCallback(upd.CallbackQuery.ID, "")
+	_, _ = u.bot.API.Request(callback)
+
 	data := upd.CallbackData()
 	entity := unmarshallCb(data)
 
