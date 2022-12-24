@@ -26,13 +26,13 @@ jobs:
           POSTGRES_DB: $POSTGRES_DB
           POSTGRES_USER: $POSTGRES_USER
           POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-          ports:
-            - 5432:5432
-          options: >-
-            --health-cmd pg_isready
-            --health-interval 5s
-            --health-timeout 5s
-            --health-retries 5
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout
