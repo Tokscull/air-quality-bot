@@ -73,7 +73,7 @@ jobs:
             TELEGRAM_BOT_WEBHOOK_PORT=${{ secrets.TELEGRAM_BOT_WEBHOOK_PORT }},\
             WAQI_API_TOKEN=${{ secrets.WAQI_API_TOKEN }},\
             POSTGRES_HOST=${{ secrets.POSTGRES_HOST }},\
-            POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}T,\
+            POSTGRES_PORT=${{ secrets.POSTGRES_PORT }},\
             POSTGRES_DB=${{ secrets.POSTGRES_DB }},\
             POSTGRES_USER=${{ secrets.POSTGRES_USER }},\
             POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} \
