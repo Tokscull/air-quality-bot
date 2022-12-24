@@ -1,8 +1,6 @@
 package config
 
 import (
-	"fmt"
-	"github.com/joho/godotenv"
 	"os"
 )
 
@@ -28,11 +26,11 @@ type PostgresqlConfig struct {
 
 func GetConfig(isProd *bool) (*Config, error) {
 
-	if !*isProd {
+	/*	if !*isProd {
 		if err := godotenv.Load(); err != nil {
 			return nil, fmt.Errorf("error loading .env file")
 		}
-	}
+	}*/
 
 	c := &Config{
 		TgBot: &TgBotConfig{
