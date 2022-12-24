@@ -10,15 +10,6 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GCE_INSTANCE: ${{ secrets.GCP_APPLICATION }}
   GCE_INSTANCE_ZONE: europe-central2-a
-  POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-  POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-  POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-  POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  TELEGRAM_BOT_WEBHOOK_URL: ${{ secrets.TELEGRAM_BOT_WEBHOOK_URL }}
-  TELEGRAM_BOT_WEBHOOK_PORT: ${{ secrets.TELEGRAM_BOT_WEBHOOK_PORT }}
-  WAQI_API_TOKEN: ${{ secrets.WAQI_API_TOKEN }}
 
 jobs:
   setup-build-publish-deploy:
@@ -29,9 +20,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: $POSTGRES_DB
-          POSTGRES_USER: $POSTGRES_USER
-          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         ports:
           - 5432:5432
         options: >-
@@ -77,13 +68,13 @@ jobs:
             --zone "$GCE_INSTANCE_ZONE" \
             --container-command=prod \
             --container-env=\
-            TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN,\
-            TELEGRAM_BOT_WEBHOOK_URL=$TELEGRAM_BOT_WEBHOOK_URL,\
-            TELEGRAM_BOT_WEBHOOK_PORT=$TELEGRAM_BOT_WEBHOOK_PORT,\
-            WAQI_API_TOKEN=$WAQI_API_TOKEN,\
-            POSTGRES_HOST=$POSTGRES_HOST,\
-            POSTGRES_PORT=$POSTGRES_PORT,\
-            POSTGRES_DB=$POSTGRES_DB,\
-            POSTGRES_USER=$POSTGRES_USER,\
-            POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }},\
+            TELEGRAM_BOT_WEBHOOK_URL=${{ secrets.TELEGRAM_BOT_WEBHOOK_URL }},\
+            TELEGRAM_BOT_WEBHOOK_PORT=${{ secrets.TELEGRAM_BOT_WEBHOOK_PORT }},\
+            WAQI_API_TOKEN=${{ secrets.WAQI_API_TOKEN }},\
+            POSTGRES_HOST=${{ secrets.POSTGRES_HOST }},\
+            POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}T,\
+            POSTGRES_DB=${{ secrets.POSTGRES_DB }},\
+            POSTGRES_USER=${{ secrets.POSTGRES_USER }},\
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} \
             --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
