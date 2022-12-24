@@ -75,13 +75,5 @@ jobs:
         run: |-
           gcloud compute instances update-container "$GCE_INSTANCE" \
             --zone "$GCE_INSTANCE_ZONE" \
-            --container-env TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN \
-            --container-env TELEGRAM_BOT_WEBHOOK_URL=$TELEGRAM_BOT_WEBHOOK_URL \
-            --container-env TELEGRAM_BOT_WEBHOOK_PORT=$TELEGRAM_BOT_WEBHOOK_PORT \
-            --container-env WAQI_API_TOKEN=$WAQI_API_TOKEN \
-            --container-env POSTGRES_HOST=$POSTGRES_HOST \
-            --container-env POSTGRES_PORT=$POSTGRES_PORT \
-            --container-env POSTGRES_DB=$POSTGRES_DB \
-            --container-env POSTGRES_USER=$POSTGRES_USER \
-            --container-env POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+            --container-arg="prod" \
             --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
